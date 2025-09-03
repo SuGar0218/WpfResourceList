@@ -1,0 +1,283 @@
+﻿<Window
+    x:Class="WpfResourceList.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:WpfResourceList"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:system="clr-namespace:System;assembly=System.Runtime"
+    xmlns:vm="clr-namespace:WpfResourceList.ViewModels"
+    Title="WPF Resource List"
+    d:DataContext="{d:DesignInstance vm:MainViewModel}"
+    FontSize="14"
+    mc:Ignorable="d">
+
+    <Window.Resources>
+        <SolidColorBrush x:Key="DataGridSelectedBackground" Color="#10000000" />
+        <SolidColorBrush x:Key="DataGridLineBrush" Color="#20000000" />
+
+        <DropShadowEffect
+            x:Key="TextOnColorBlockDropShadowEffect"
+            BlurRadius="12"
+            Opacity="1.0"
+            ShadowDepth="0"
+            Color="Black" />
+
+        <DataTemplate x:Key="ColorCellTemplate" DataType="{x:Type vm:ResourceInfo}">
+            <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Border.Background>
+                    <SolidColorBrush Color="{Binding Resource}" />
+                </Border.Background>
+                <TextBlock
+                    Effect="{StaticResource TextOnColorBlockDropShadowEffect}"
+                    Foreground="White"
+                    Text="{Binding Resource}" />
+            </Border>
+        </DataTemplate>
+
+        <DataTemplate x:Key="BrushCellTemplate" DataType="{x:Type vm:ResourceInfo}">
+            <Rectangle
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                Fill="{Binding Resource}" />
+        </DataTemplate>
+
+        <DataTemplate x:Key="TextCellTemplate" DataType="{x:Type vm:ResourceInfo}">
+            <TextBlock Text="{Binding Key}" />
+        </DataTemplate>
+
+        <DataTemplate x:Key="ButtonStyleCellTemplate" DataType="{x:Type vm:ResourceInfo}">
+            <Button Content="{Binding Key}" Style="{Binding Resource}" />
+        </DataTemplate>
+
+        <DataTemplate x:Key="CheckBoxStyleCellTemplate" DataType="{x:Type vm:ResourceInfo}">
+            <CheckBox Content="{Binding Key}" Style="{Binding Resource}" />
+        </DataTemplate>
+
+        <DataTemplate x:Key="ComboBoxStyleCellTemplate" DataType="{x:Type vm:ResourceInfo}">
+            <ComboBox SelectedIndex="0" Style="{Binding Resource}">
+                <ComboBoxItem Content="ComboBox item 1" />
+                <ComboBoxItem Content="ComboBox item 2" />
+                <ComboBoxItem Content="ComboBox item 3" />
+            </ComboBox>
+        </DataTemplate>
+
+        <DataTemplate x:Key="PasswordBoxStyleCellTemplate" DataType="{x:Type vm:ResourceInfo}">
+            <PasswordBox Password="1234" Style="{Binding Resource}" />
+        </DataTemplate>
+
+        <DataTemplate x:Key="ProgressBarStyleCellTemplate" DataType="{x:Type vm:ResourceInfo}">
+            <ProgressBar
+                Maximum="1.0"
+                Minimum="0.0"
+                Style="{Binding Resource}"
+                Value="0.618" />
+        </DataTemplate>
+
+        <DataTemplate x:Key="RadioButtonStyleCellTemplate" DataType="{x:Type vm:ResourceInfo}">
+            <RadioButton Content="{Binding Key}" Style="{Binding Resource}" />
+        </DataTemplate>
+
+        <DataTemplate x:Key="ToggleButtonStyleCellTemplate" DataType="{x:Type vm:ResourceInfo}">
+            <ToggleButton Content="{Binding Key}" Style="{Binding Resource}" />
+        </DataTemplate>
+
+        <DataTemplate x:Key="TextBlockStyleCellTemplate" DataType="{x:Type vm:ResourceInfo}">
+            <TextBlock Style="{Binding Resource}" Text="{Binding Key}" />
+        </DataTemplate>
+
+        <DataTemplate x:Key="TextBoxStyleCellTemplate" DataType="{x:Type vm:ResourceInfo}">
+            <TextBox Style="{Binding Resource}" Text="{Binding Key}" />
+        </DataTemplate>
+
+        <DataTemplate x:Key="ScrollBarStyleCellTemplate" DataType="{x:Type vm:ResourceInfo}">
+            <ScrollBar
+                Maximum="1.0"
+                Minimum="0.0"
+                Orientation="Horizontal"
+                Style="{Binding Resource}"
+                Value="0.618" />
+        </DataTemplate>
+
+
+        <DataTemplate x:Key="DatePickerStyleCellTemplate" DataType="{x:Type vm:ResourceInfo}">
+            <DatePicker Style="{Binding Resource}" />
+        </DataTemplate>
+
+        <DataTemplate x:Key="CalendarStyleCellTemplate" DataType="{x:Type vm:ResourceInfo}">
+            <Calendar Style="{Binding Resource}" />
+        </DataTemplate>
+
+        <DataTemplate x:Key="ExpanderStyleCellTemplate" DataType="{x:Type vm:ResourceInfo}">
+            <Expander
+                Content="{Binding Resource}"
+                Header="{Binding Key}"
+                Style="{Binding Resource}" />
+        </DataTemplate>
+
+        <DataTemplate x:Key="MenuStyleCellTemplate" DataType="{x:Type vm:ResourceInfo}">
+            <Menu Style="{Binding Resource}">
+                <MenuItem Header="Menu item 1">
+                    <MenuItem Header="Menu item 1" />
+                    <MenuItem Header="Menu item 2" />
+                    <Separator />
+                    <MenuItem Header="Menu item 3" />
+                    <MenuItem Header="Menu item 4" />
+                </MenuItem>
+                <MenuItem Header="Menu item 2">
+                    <MenuItem Header="Menu item 1" />
+                    <MenuItem Header="Menu item 2" />
+                    <Separator />
+                    <MenuItem Header="Menu item 3" />
+                    <MenuItem Header="Menu item 4" />
+                </MenuItem>
+                <Separator />
+                <MenuItem Header="Menu item 3">
+                    <MenuItem Header="Menu item 1" />
+                    <MenuItem Header="Menu item 2" />
+                    <Separator />
+                    <MenuItem Header="Menu item 3" />
+                    <MenuItem Header="Menu item 4" />
+                </MenuItem>
+                <MenuItem Header="Menu item 4">
+                    <MenuItem Header="Menu item 1" />
+                    <MenuItem Header="Menu item 2" />
+                    <Separator />
+                    <MenuItem Header="Menu item 3" />
+                    <MenuItem Header="Menu item 4" />
+                </MenuItem>
+            </Menu>
+        </DataTemplate>
+    </Window.Resources>
+
+    <Window.DataContext>
+        <vm:MainViewModel x:Name="ViewModel" />
+    </Window.DataContext>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <ComboBox
+            Grid.Row="0"
+            SelectedIndex="0"
+            SelectionChanged="ComboBox_SelectionChanged">
+            <ComboBox.ItemTemplate>
+                <DataTemplate DataType="{x:Type ResourceDictionary}">
+                    <TextBlock Text="{Binding Source}" />
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+            <ResourceDictionary Source="pack://application:,,,/PresentationFramework.Fluent;component/Themes/Fluent.xaml" />
+            <ResourceDictionary Source="pack://application:,,,/PresentationFramework.Aero;component/Themes/Aero.NormalColor.xaml" />
+            <ResourceDictionary Source="pack://application:,,,/PresentationFramework.Luna;component/Themes/Luna.NormalColor.xaml" />
+            <ResourceDictionary Source="pack://application:,,,/PresentationFramework.Luna;component/Themes/Luna.Homestead.xaml" />
+            <ResourceDictionary Source="pack://application:,,,/PresentationFramework.Luna;component/Themes/Luna.Metallic.xaml" />
+            <ResourceDictionary Source="pack://application:,,,/PresentationFramework.Royale;component/Themes/Royale.NormalColor.xaml" />
+            <ResourceDictionary Source="pack://application:,,,/PresentationFramework.Classic;component/Themes/Classic.xaml" />
+        </ComboBox>
+
+        <DataGrid
+            Grid.Row="1"
+            AutoGenerateColumns="False"
+            CanUserSortColumns="False"
+            HorizontalGridLinesBrush="{StaticResource DataGridLineBrush}"
+            IsReadOnly="True"
+            ItemsSource="{Binding ResourceInfoList, Mode=OneWay}"
+            SelectionUnit="FullRow"
+            VerticalGridLinesBrush="{StaticResource DataGridLineBrush}">
+
+            <DataGrid.RowStyle>
+                <Style BasedOn="{StaticResource {x:Type DataGridRow}}" TargetType="{x:Type DataGridRow}">
+                    <Setter Property="VerticalContentAlignment" Value="Center" />
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="Transparent" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.RowStyle>
+
+            <DataGrid.CellStyle>
+                <Style BasedOn="{StaticResource {x:Type DataGridCell}}" TargetType="{x:Type DataGridCell}">
+                    <Setter Property="VerticalContentAlignment" Value="Center" />
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="{StaticResource DataGridSelectedBackground}" />
+                            <Setter Property="Foreground" Value="Black" />
+                            <Setter Property="BorderBrush" Value="{StaticResource DataGridSelectedBackground}" />
+                        </Trigger>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter Property="Background" Value="{StaticResource DataGridSelectedBackground}" />
+                            <Setter Property="Foreground" Value="Black" />
+                            <Setter Property="BorderBrush" Value="{x:Null}" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.CellStyle>
+
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="Key">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate DataType="{x:Type vm:ResourceInfo}">
+                            <TextBox
+                                Background="Transparent"
+                                BorderThickness="0"
+                                IsReadOnly="True"
+                                Text="{Binding Key, Mode=OneWay}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Header="KeyType">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate DataType="{x:Type vm:ResourceInfo}">
+                            <TextBlock Text="{Binding KeyType.Name}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Header="Resource" Selector.IsSelected="False">
+                    <DataGridTemplateColumn.CellTemplateSelector>
+                        <vm:ResourceColumnTemplateSelector
+                            BrushCellTemplate="{StaticResource BrushCellTemplate}"
+                            ButtonStyleCellTemplate="{StaticResource ButtonStyleCellTemplate}"
+                            CalendarStyleCellTemplate="{StaticResource CalendarStyleCellTemplate}"
+                            CheckBoxStyleCellTemplate="{StaticResource CheckBoxStyleCellTemplate}"
+                            ColorCellTemplate="{StaticResource ColorCellTemplate}"
+                            ComboBoxStyleCellTemplate="{StaticResource ComboBoxStyleCellTemplate}"
+                            DatePickerStyleCellTemplate="{StaticResource DatePickerStyleCellTemplate}"
+                            DefaultCellTemplate="{StaticResource TextCellTemplate}"
+                            ExpanderStyleCellTemplate="{StaticResource ExpanderStyleCellTemplate}"
+                            MenuStyleCellTemplate="{StaticResource MenuStyleCellTemplate}"
+                            PasswordBoxStyleCellTemplate="{StaticResource PasswordBoxStyleCellTemplate}"
+                            ProgressBarStyleCellTemplate="{StaticResource ProgressBarStyleCellTemplate}"
+                            RadioButtonStyleCellTemplate="{StaticResource RadioButtonStyleCellTemplate}"
+                            ScrollBarStyleCellTemplate="{StaticResource ScrollBarStyleCellTemplate}"
+                            TextBlockStyleCellTemplate="{StaticResource TextBlockStyleCellTemplate}"
+                            TextBoxStyleCellTemplate="{StaticResource TextBoxStyleCellTemplate}"
+                            ToggleButtonStyleCellTemplate="{StaticResource ToggleButtonStyleCellTemplate}" />
+                    </DataGridTemplateColumn.CellTemplateSelector>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Header="ResourceType">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate DataType="{x:Type vm:ResourceInfo}">
+                            <TextBlock Text="{Binding ResourceType.Name}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Header="TargetType">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate DataType="{x:Type vm:ResourceInfo}">
+                            <TextBlock Text="{Binding TargetType.Name}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+
+</Window>
